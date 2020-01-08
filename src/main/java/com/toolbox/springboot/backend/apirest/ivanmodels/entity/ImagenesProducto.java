@@ -3,46 +3,67 @@ package com.toolbox.springboot.backend.apirest.ivanmodels.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="productimages")
 public class ImagenesProducto implements Serializable {
-
+	
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idImages;
+	private int idimages;
 	
-	private String imageRoute;
-	private int productID;
+	private String imageroute;
 	
+	@ManyToOne(fetch =FetchType.LAZY)
+	@JsonIgnore
+	@JoinColumn(name="productid")
+	private Productos productos;
+
 	
-	
-	public int getIdImages() {
-		return idImages;
+	public int getIdimages() {
+		return idimages;
 	}
 
-	public void setIdImages(int idImages) {
-		this.idImages = idImages;
+
+
+	public void setIdimages(int idimages) {
+		this.idimages = idimages;
 	}
 
-	public String getImageRoute() {
-		return imageRoute;
+
+
+	public String getImageroute() {
+		return imageroute;
 	}
 
-	public void setImageRoute(String imageRoute) {
-		this.imageRoute = imageRoute;
+
+
+	public void setImageroute(String imageroute) {
+		this.imageroute = imageroute;
 	}
 
-	public int getProductID() {
-		return productID;
+
+
+	public Productos getProductos() {
+		return productos;
 	}
 
-	public void setProductID(int productID) {
-		this.productID = productID;
+
+
+	public void setProductos(Productos productos) {
+		this.productos = productos;
 	}
 
 

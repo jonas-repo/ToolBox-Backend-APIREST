@@ -4,12 +4,17 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="productcomments")
@@ -17,76 +22,51 @@ public class ComentariosProducto implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int productCommentoID;
+	private int productcommentid;
 	
-	private String productComment;
-	private int productID;
-	private int userId;
+	private String productcomment;
 	
 	@Temporal(TemporalType.DATE)
-	private Date productCommentDate;
+	private Date productcommentdate;
 	
+	@ManyToOne(fetch =FetchType.LAZY)
+	@JsonIgnore
+	@JoinColumn(name="productid")
+	private Productos productos;
 	
+
 	
-	public int getProductCommentoID() {
-		return productCommentoID;
+	public int getProductcommentid() {
+		return productcommentid;
 	}
 
-
-
-	public void setProductCommentoID(int productCommentoID) {
-		this.productCommentoID = productCommentoID;
+	public void setProductcommentid(int productcommentid) {
+		this.productcommentid = productcommentid;
 	}
 
-
-
-	public String getProductComment() {
-		return productComment;
+	public String getProductcomment() {
+		return productcomment;
 	}
 
-
-
-	public void setProductComment(String productComment) {
-		this.productComment = productComment;
+	public void setProductcomment(String productcomment) {
+		this.productcomment = productcomment;
 	}
 
-
-
-	public int getProductID() {
-		return productID;
+	public Date getProductcommentdate() {
+		return productcommentdate;
 	}
 
-
-
-	public void setProductID(int productID) {
-		this.productID = productID;
+	public void setProductcommentdate(Date productcommentdate) {
+		this.productcommentdate = productcommentdate;
 	}
 
-
-
-	public int getUserId() {
-		return userId;
+	public Productos getProductos() {
+		return productos;
 	}
 
-
-
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setProductos(Productos productos) {
+		this.productos = productos;
 	}
-
-
-
-	public Date getProductCommentDate() {
-		return productCommentDate;
-	}
-
-
-
-	public void setProductCommentDate(Date productCommentDate) {
-		this.productCommentDate = productCommentDate;
-	}
-
-
 
 	private static final long serialVersionUID = 1L;
 
