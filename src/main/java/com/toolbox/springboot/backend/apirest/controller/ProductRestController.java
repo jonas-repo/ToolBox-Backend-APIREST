@@ -253,7 +253,7 @@ public class ProductRestController {
 		Path routeFile = Paths.get("uploads/productImages").resolve(imageName).toAbsolutePath();
 		Resource resource = null;
 		
-		logger.info(routeFile.toString());
+		//logger.info(routeFile.toString());
 		try {
 			
 			resource =  new UrlResource(routeFile.toUri());
